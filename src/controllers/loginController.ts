@@ -11,14 +11,14 @@ const login = (req: Request, res: Response): void => {
                 return loginServices.createCSRFToken().then(token => {
                     res.set('X-CSRF-Token', token);
                     res.cookie('jwt', authResponse.token);
-                    res.json({ success: true, role: authResponse.role, token: authResponse.token });
+                    res.json({ success: true, id: authResponse.id, role: authResponse.role, token: authResponse.token, firstname: authResponse.firstName, lastname: authResponse.lastName });
                 });
             } else {
                 res.status(401).json({ success: false, message: LOGIN_ERROR_MESSAGE.INVALID_EMAIL_PASSWORD });
             }
         })
         .catch(error => {
-            console.log(error);
+            console.error(error);
             res.status(500).json({ success: false, message: LOGIN_ERROR_MESSAGE.INTERNAL_SERVER_ERROR });
         });
 };

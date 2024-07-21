@@ -6,7 +6,6 @@ const getUserDetails = (req: Request, res: Response) => {
     commonService
         .getUserDetails(req.params.email)
         .then(fetchUserDetailsResponse => {
-            console.log(fetchUserDetailsResponse);
             res.status(200).json(fetchUserDetailsResponse);
         })
         .catch(error => {

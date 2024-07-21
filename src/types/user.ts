@@ -1,4 +1,5 @@
 type User = {
+  id: number;
   firstName: string;
   lastName: string;
   userName: string;
@@ -7,4 +8,5 @@ type User = {
   mobileNumber: number;
   userRole?: string;
 };
+
 export default User;
