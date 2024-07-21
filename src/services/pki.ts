@@ -36,4 +36,9 @@ const getKeysByUser = async (userId: number): Promise<getKeysResponse[]> => {
         .then(keysResponse => keysResponse);
 }
 
-export default { generateKeys, saveKeys, getKeysByUser };
+const deleteKeysById = async (keyId: number) => {
+    return await keysModel.destroy({ where: { id: keyId } })
+        .then(deleteKeysResponse => deleteKeysResponse);
+}
+
+export default { generateKeys, saveKeys, getKeysByUser, deleteKeysById };
