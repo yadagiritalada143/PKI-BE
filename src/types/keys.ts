@@ -1,12 +1,6 @@
-type User = {
-    id: number;
-    firstName: string;
-    lastName: string;
-    userName: string;
-    password: string;
-    email: string;
-    mobileNumber: number;
-    userRole?: string;
+type keysCombination = {
+    publicKey: string;
+    privateKey: string;
 };
 
-export default User;
+export default keysCombination;

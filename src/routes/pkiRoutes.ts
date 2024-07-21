@@ -1,10 +1,12 @@
 import express, { Router } from 'express';
 import pkiController from '../controllers/pkiController';
-import generateKeysRequestSchema from '../middlewares/schemas/pkiSchema';
-import validateGenerateKeysRequest from '../middlewares/validateGenerateKeys';
+import { generateKeysRequestSchema, saveKeysRequestSchema, getKeysRequestSchema } from '../middlewares/schemas/pkiSchema';
+import validatePkiRequest from '../middlewares/validateGenerateKeys';
 
 const pkiRouter: Router = express.Router();
 
-pkiRouter.post('/generateKeys', validateGenerateKeysRequest(generateKeysRequestSchema), pkiController.generateKeys);
+pkiRouter.post('/generateKeys', validatePkiRequest(generateKeysRequestSchema), pkiController.generateKeys);
+pkiRouter.post('/saveKeys', validatePkiRequest(saveKeysRequestSchema), pkiController.saveKeys);
+pkiRouter.get('/getKeysByUser/:userId', pkiController.getKeysByUser);
 
 export default pkiRouter;

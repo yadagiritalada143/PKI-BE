@@ -14,4 +14,35 @@ const generateKeys = (req: Request, res: Response) => {
         });
 }
 
-export default { generateKeys }
+const saveKeys = (req: Request, res: Response) => {
+    const { userId, publicKey, privateKey } = req.body;
+    pkiService.saveKeys({ userId, publicKey, privateKey })
+        .then((responseAfterKeysSaved: any) => {
+            pkiService.getKeysByUser(userId)
+                .then((getAllKeysByUserResponse) => {
+                    res.status(200).json({ success: true, keys: getAllKeysByUserResponse });
+                })
+                .catch((error: any) => {
+                    console.error(`Error in fetching after saved keys: ${error}`);
+                    return res.status(500).json({ message: COMMON_ERRORS.FETCH_KEYS_ERROR });
+                });
+        })
+        .catch((error: any) => {
+            console.error(`Error in saving keys: ${error}`);
+            return res.status(500).json({ message: COMMON_ERRORS.SAVE_KEYS_ERROR });
+        });
+}
+
+const getKeysByUser = (req: Request, res: Response) => {
+    const userId = Number(req.params.userId);
+    pkiService.getKeysByUser(userId)
+        .then((getAllKeysByUserResponse) => {
+            res.status(200).json({ success: true, keys: getAllKeysByUserResponse });
+        })
+        .catch((error: any) => {
+            console.error(`Error in fetching keys: ${error}`);
+            return res.status(500).json({ message: COMMON_ERRORS.FETCH_KEYS_ERROR });
+        });
+}
+
+export default { generateKeys, saveKeys, getKeysByUser }

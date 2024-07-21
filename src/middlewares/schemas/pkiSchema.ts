@@ -4,4 +4,14 @@ const generateKeysRequestSchema = Joi.object({
     secret: Joi.string().required()
 });
 
-export default generateKeysRequestSchema;
+const saveKeysRequestSchema = Joi.object({
+    userId: Joi.number().required(),
+    publicKey: Joi.string().required(),
+    privateKey: Joi.string().required()
+});
+
+const getKeysRequestSchema = Joi.object({
+    userId: Joi.number().required()
+});
+
+export { generateKeysRequestSchema, saveKeysRequestSchema, getKeysRequestSchema };

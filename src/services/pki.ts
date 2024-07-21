@@ -1,5 +1,6 @@
 import crypto from 'crypto';
-import { generateKeysResponse } from '../intefaces/pkiInterface';
+import { generateKeysResponse, getKeysResponse } from '../intefaces/pkiInterface';
+import keysModel from '../model/keysModel';
 
 const generateKeys = (userId: number, secret: string): Promise<generateKeysResponse> => {
     return new Promise((resolve, reject) => {
@@ -26,4 +27,13 @@ const generateKeys = (userId: number, secret: string): Promise<generateKeysRespo
     });
 }
 
-export default { generateKeys };
+const saveKeys = (keysData: any) => {
+    return keysModel.create(keysData);
+}
+
+const getKeysByUser = async (userId: number): Promise<getKeysResponse[]> => {
+    return await keysModel.findAll({ where: { userId: userId } })
+        .then(keysResponse => keysResponse);
+}
+
+export default { generateKeys, saveKeys, getKeysByUser };

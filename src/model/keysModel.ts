@@ -16,12 +16,12 @@ keysModel.init({
         primaryKey: true,
     },
     publicKey: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
         primaryKey: false
     },
     privateKey: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
         primaryKey: false
     },

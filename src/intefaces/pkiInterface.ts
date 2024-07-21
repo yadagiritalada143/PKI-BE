@@ -1,3 +1,4 @@
+import keysCombination from '../types/keys';
 interface generateKeysResponse {
     success: boolean;
     publicKey?: string;
@@ -5,4 +6,11 @@ interface generateKeysResponse {
     message?: string;
 }
 
-export { generateKeysResponse }
+interface getKeysResponse {
+    id: number;
+    publicKey: string;
+    privateKey: string;
+    userId?: number;
+}
+
+export { generateKeysResponse, getKeysResponse }
