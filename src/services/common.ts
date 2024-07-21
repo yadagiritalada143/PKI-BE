@@ -27,6 +27,7 @@ const getUserDetails = (email: string): Promise<FetchUserResponse> => {
                     resolve({
                         success: true,
                         user: {
+                            id: user.id,
                             firstName: user.firstName,
                             lastName: user.lastName,
                             userName: user.userName,

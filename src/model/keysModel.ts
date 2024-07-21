@@ -1,27 +1,27 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/databaseConfig';
-import ScanResult from '../types/scanResult';
-import UserModel from '../model/userModel';
+import UserModel from './userModel';
 
-class scanResultsModel extends Model {
+class keysModel extends Model {
     public id!: number;
-    public fileName!: string;
-    public scanResult!: ScanResult;
+    public publicKey!: string;
+    public privateKey!: string;
+    public userId!: number;
 }
 
-scanResultsModel.init({
+keysModel.init({
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
     },
-    fileName: {
+    publicKey: {
         type: DataTypes.STRING,
         allowNull: false,
         primaryKey: false
     },
-    scanResult: {
-        type: DataTypes.ARRAY(DataTypes.JSONB),
+    privateKey: {
+        type: DataTypes.STRING,
         allowNull: false,
         primaryKey: false
     },
@@ -36,7 +36,7 @@ scanResultsModel.init({
     },
 }, {
     sequelize,
-    tableName: 'scanresults',
+    tableName: 'keys',
 });
 
-export default scanResultsModel;
+export default keysModel;

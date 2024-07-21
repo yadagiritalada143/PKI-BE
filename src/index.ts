@@ -4,7 +4,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import session from 'express-session';
 import commonRouter from './routes/commonRoutes';
-import scannerRouter from './routes/scannerRoutes';
+import pkiRouter from './routes/pkiRoutes';
 
 dotenv.config();
 
@@ -26,7 +26,7 @@ app.use(cors({
 }));
 
 app.use('/common', commonRouter);
-app.use('/scan', scannerRouter);
+app.use('/pki', pkiRouter);
 
 app.listen(port, () => {
     console.log(`Server is running at  http://localhost:${port}`);
